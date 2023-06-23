@@ -1,0 +1,181 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Application Form</h1>
+        <form action="submit.php" method="POST">
+            <section>
+                <h2>Applicant's Details</h2>
+                <div class="input-wrapper">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="fathersName">Father's Name:</label>
+                    <input type="text" id="fathersName" name="fathersName" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="placeOfBirth">Place of Birth:</label>
+                    <input type="text" id="placeOfBirth" name="placeOfBirth" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="profession">Profession:</label>
+                    <input type="text" id="profession" name="profession" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="religion">Religion:</label>
+                    <input type="text" id="religion" name="religion" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="maritalStatus">Marital Status:</label>
+                    <select id="maritalStatus" name="maritalStatus" required>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="bloodGroup">Blood Group:</label>
+                    <select id="bloodGroup" name="bloodGroup" required>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" required>
+                </div>
+            </section>
+
+            <section>
+                <h2>Questionnaire</h2>
+                <div class="input-wrapper">
+                    <label for="practiceExperience">Do you have any practice experience with physical exercise?</label>
+                    <select id="practiceExperience" name="practiceExperience" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="exerciseType">If yes, what sort of physical exercise?</label>
+                    <input type="text" id="exerciseType" name="exerciseType">
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="physicalTrainingCourses">Did you have any physical training courses?</label>
+                    <select id="physicalTrainingCourses" name="physicalTrainingCourses" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="trainingCourseType">If yes, what sort of physical training course?</label>
+                    <input type="text" id="trainingCourseType" name="trainingCourseType">
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="physicalLimitations">Do you have any physical limitations/diseases?</label>
+                    <select id="physicalLimitations" name="physicalLimitations" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="limitationsExplanation">If yes, then explain briefly:</label>
+                    <input type="text" id="limitationsExplanation" name="limitationsExplanation">
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="benefitsExpectation">Please indicate the benefits you would like to expect from this
+                        organization:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="benefits[]" value="Improved Health">Improved Health</label>
+                        <label><input type="checkbox" name="benefits[]" value="Improved Concentration">Improved
+                            Concentration</label>
+                        <label><input type="checkbox" name="benefits[]" value="Physical Fitness">Physical
+                            Fitness</label>
+                        <label><input type="checkbox" name="benefits[]" value="Awareness">Awareness</label>
+                        <label><input type="checkbox" name="benefits[]" value="Self Confidence">Self Confidence</label>
+                        <label><input type="checkbox" name="benefits[]" value="Other">Other</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="otherBenefit">If other, please specify:</label>
+                        <input type="text" id="otherBenefit" name="otherBenefit">
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Applicant Agreement</h2>
+                <p>I hereby declare that all the particulars furnished with this form are true and correct.</p>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="confirmAgreement" name="confirmAgreement" required>
+                    <label for="confirmAgreement">I confirm the above statements</label>
+                </div>
+                <div class="input-wrapper">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>For Office Use</h2>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="confirmEnrollment" name="confirmEnrollment" required>
+                    <label for="confirmEnrollment">Confirm Enrollment</label>
+                </div>
+                <div class="input-wrapper">
+                    <label for="enrollmentDate">Date of Enrollment:</label>
+                    <input type="date" id="enrollmentDate" name="enrollmentDate">
+                </div>
+            </section>
+
+            <div class="input-wrapper">
+                <input type="submit" value="Submit">
+            </div>
+
+            <div class="btn-container">
+                <a href="download_students.php" class="btn btn-primary">Download Spreadsheet</a>
+            </div>
+            
+
+        </form>
+    </div>
+</body>
