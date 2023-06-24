@@ -4,10 +4,11 @@
 
 <body>
     <div class="container">
-        <h1>Student Application Form</h1>
+        <h1>ROYAL TAEKWONDO DOJANG BANGLADESH</h1>
+        <h1>STUDENT APPLICATION FORM</h1>
         <form action="submit.php" method="POST">
             <section>
-                <h2>Applicant's Details</h2>
+                <h2 class="section-title">Applicant's Details</h2>
                 <div class="input-wrapper">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -81,43 +82,43 @@
             </section>
 
             <section>
-                <h2>Questionnaire</h2>
+                <h2 class="section-title">Questionnaire</h2>
                 <div class="input-wrapper">
                     <label for="practiceExperience">Do you have any practice experience with physical exercise?</label>
                     <select id="practiceExperience" name="practiceExperience" required>
-                        <option value="Yes">Yes</option>
                         <option value="No">No</option>
+                        <option value="Yes">Yes</option>
                     </select>
                 </div>
 
-                <div class="input-wrapper">
-                    <label for="exerciseType">If yes, what sort of physical exercise?</label>
+                <div class="input-wrapper" id="exerciseTypeWrapper" style="display: none;">
+                    <label for="exerciseType">What sort of physical exercises?</label>
                     <input type="text" id="exerciseType" name="exerciseType">
                 </div>
 
                 <div class="input-wrapper">
                     <label for="physicalTrainingCourses">Did you have any physical training courses?</label>
                     <select id="physicalTrainingCourses" name="physicalTrainingCourses" required>
-                        <option value="Yes">Yes</option>
                         <option value="No">No</option>
+                        <option value="Yes">Yes</option>
                     </select>
                 </div>
 
-                <div class="input-wrapper">
-                    <label for="trainingCourseType">If yes, what sort of physical training course?</label>
+                <div class="input-wrapper" id="trainingCourseTypeWrapper" style="display: none;">
+                    <label for="trainingCourseType">What sort of physical training courses?</label>
                     <input type="text" id="trainingCourseType" name="trainingCourseType">
                 </div>
 
                 <div class="input-wrapper">
                     <label for="physicalLimitations">Do you have any physical limitations/diseases?</label>
                     <select id="physicalLimitations" name="physicalLimitations" required>
-                        <option value="Yes">Yes</option>
                         <option value="No">No</option>
+                        <option value="Yes">Yes</option>  
                     </select>
                 </div>
 
-                <div class="input-wrapper">
-                    <label for="limitationsExplanation">If yes, then explain briefly:</label>
+                <div class="input-wrapper" id="limitationsExplanationWrapper" style="display: none;">
+                    <label for="limitationsExplanation">Please explain briefly:</label>
                     <input type="text" id="limitationsExplanation" name="limitationsExplanation">
                 </div>
 
@@ -132,9 +133,9 @@
                             Fitness</label>
                         <label><input type="checkbox" name="benefits[]" value="Awareness">Awareness</label>
                         <label><input type="checkbox" name="benefits[]" value="Self Confidence">Self Confidence</label>
-                        <label><input type="checkbox" name="benefits[]" value="Other">Other</label>
+                        <label><input type="checkbox" name="benefits[]" value="Other" id="otherBenefitCheckbox">Other</label>
                     </div>
-                    <div class="input-wrapper">
+                    <div class="input-wrapper" id="otherBenefitWrapper" style="display: none;">
                         <label for="otherBenefit">If other, please specify:</label>
                         <input type="text" id="otherBenefit" name="otherBenefit">
                     </div>
@@ -142,7 +143,7 @@
             </section>
 
             <section>
-                <h2>Applicant Agreement</h2>
+                <h2 class="section-title">Applicant Agreement</h2>
                 <p>I hereby declare that all the particulars furnished with this form are true and correct.</p>
                 <div class="checkbox-container">
                     <input type="checkbox" id="confirmAgreement" name="confirmAgreement" required>
@@ -156,7 +157,7 @@
 
 
             <section>
-                <h2>For Office Use</h2>
+                <h2 class="section-title">For Office Use</h2>
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="confirmEnrollment" name="confirmEnrollment" required>
                     <label for="confirmEnrollment">Confirm Enrollment</label>
@@ -174,8 +175,57 @@
             <div class="btn-container">
                 <a href="download_students.php" class="btn btn-primary">Download Spreadsheet</a>
             </div>
-            
+
 
         </form>
     </div>
 </body>
+
+<script>
+    // Get the dropdown element
+    var practiceExperienceDropdown = document.getElementById("practiceExperience");
+    var physicalTrainingCoursesDropdown = document.getElementById("physicalTrainingCourses");
+    var physicalLimitationsDropdown = document.getElementById("physicalLimitations");
+    var otherBenefitCheckboxDropdown = document.getElementById("otherBenefitCheckbox")
+
+    // Get the div elements to be revealed
+    var exerciseTypeWrapper = document.getElementById("exerciseTypeWrapper");
+    var trainingCourseTypeWrapper = document.getElementById("trainingCourseTypeWrapper");
+    var limitationsExplanationWrapper = document.getElementById("limitationsExplanationWrapper");
+    var otherBenefitWrapper = document.getElementById("otherBenefitWrapper");
+
+    // Add event listener to the dropdown
+    practiceExperienceDropdown.addEventListener("change", function () {
+        if (this.value === "Yes") {
+            exerciseTypeWrapper.style.display = "block";
+        } else {
+            exerciseTypeWrapper.style.display = "none";
+        }
+    });
+
+    physicalTrainingCoursesDropdown.addEventListener("change", function () {
+        if(this.value === "Yes"){
+            trainingCourseTypeWrapper.style.display = "block";
+        }else{
+            trainingCourseTypeWrapper.style.display = "none";
+        }
+    });
+
+    physicalLimitationsDropdown.addEventListener("change", function(){
+        if(this.value === "Yes"){
+            limitationsExplanationWrapper.style.display = "block";
+        }else{
+            limitationsExplanationWrapper.style.display = "none";
+        }
+    });
+
+    otherBenefitCheckboxDropdown.addEventListener("change", function(){
+        if(this.checked){
+            otherBenefitWrapper.style.display = "block";
+        }else{
+            otherBenefitWrapper.style.display = "none";
+        }
+    });
+
+    
+</script>
