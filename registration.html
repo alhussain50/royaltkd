@@ -155,8 +155,11 @@
                 </div>
             </section>
 
+            <div id="revealNextElementsBtn" class="btn-container">
+                <a href="#forOfficeUseSection" class="btn btn-primary-submit">SUBMIT FOR OFFICIAL REVIEW</a>
+            </div>
 
-            <section>
+            <section id="forOfficeUseSection" style="display: none;">
                 <h2 class="section-title">For Office Use</h2>
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="confirmEnrollment" name="confirmEnrollment" required>
@@ -168,11 +171,11 @@
                 </div>
             </section>
 
-            <div class="input-wrapper">
-                <input type="submit" value="Submit">
+            <div id="confirmSubmissionDiv" class="input-wrapper" style="display: none;">
+                <input type="submit" value="Confirm Submission">
             </div>
 
-            <div class="btn-container">
+            <div id="downloadSpreadsheetDiv" class="btn-container" style="display: none;">
                 <a href="download_students.php" class="btn btn-primary">Download Spreadsheet</a>
             </div>
 
@@ -186,7 +189,7 @@
     var practiceExperienceDropdown = document.getElementById("practiceExperience");
     var physicalTrainingCoursesDropdown = document.getElementById("physicalTrainingCourses");
     var physicalLimitationsDropdown = document.getElementById("physicalLimitations");
-    var otherBenefitCheckboxDropdown = document.getElementById("otherBenefitCheckbox")
+    var otherBenefitCheckboxDropdown = document.getElementById("otherBenefitCheckbox");
 
     // Get the div elements to be revealed
     var exerciseTypeWrapper = document.getElementById("exerciseTypeWrapper");
@@ -227,5 +230,18 @@
         }
     });
 
-    
+    document.addEventListener("DOMContentLoaded", function() {
+    var revealNextElementsBtn = document.getElementById("revealNextElementsBtn");
+    var forOfficeUseSection = document.getElementById("forOfficeUseSection");
+    var confirmSubmissionDiv = document.getElementById("confirmSubmissionDiv");
+    var downloadSpreadsheetDiv = document.getElementById("downloadSpreadsheetDiv");
+
+    revealNextElementsBtn.addEventListener("click", function() {
+        revealNextElementsBtn.style.display = "none";
+        forOfficeUseSection.style.display = "block";
+        confirmSubmissionDiv.style.display = "block";
+        downloadSpreadsheetDiv.style.display = "block";
+    });
+});
+
 </script>
