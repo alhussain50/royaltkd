@@ -19,7 +19,7 @@ $physicalTrainingCourses = $_GET["physicalTrainingCourses"];
 $trainingCourseType = $_GET["trainingCourseType"];
 $physicalLimitations = $_GET["physicalLimitations"];
 $limitationsExplanation = $_GET["limitationsExplanation"];
-$benefits = $_GET["benefits"];
+$selectedBenefits = isset($_GET["benefits"]) ? $_GET["benefits"] : [];
 $otherBenefit = $_GET["otherBenefit"];
 $confirmAgreement = $_GET["confirmAgreement"];
 $date = $_GET["date"];
@@ -27,7 +27,9 @@ $confirmEnrollment = $_GET["confirmEnrollment"];
 $enrollmentDate = $_GET["enrollmentDate"];
 
 // Generate PDF file
-$fileName = 'submitted_form.pdf';
+$tempName = strtolower($name);
+$tempName = str_replace(' ', '_', $tempName);
+$fileName = $tempName . '_submitted_form.pdf';
 
 // Create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -41,6 +43,20 @@ $pdf->SetKeywords('form, submission, data');
 
 // Add a page
 $pdf->AddPage();
+
+// Set Custom Title
+$pdf->SetFont('helvetica', 'B', 24);
+$title = 'ROYAL TAEKWONDO DOJANG BANGLADESH';
+$pdf->Cell(0, 10, $title, 0, 1, 'C');
+
+//Blank line
+$pdf->Cell(0, 10, '', 0, 1);
+
+// Set Pdf Header
+$pdf->SetFont('helvetica', 'B', 16);
+$title = $name . "'s Record:";
+$pdf->Cell(0, 10, $title, 0, 1);
+
 
 // Set some content to the PDF
 $pdf->SetFont('Helvetica', '', 12);
@@ -67,11 +83,9 @@ $pdf->Cell(0, 10, "Do you have any physical limitations/diseases?: " . $physical
 if ($limitationsExplanation != "") {
     $pdf->Cell(0, 10, "If yes, then explain briefly: " . $limitationsExplanation, 0, 1);
 }
-$pdf->Cell(0, 10, "Please indicate the benefits you would like to expect from this organization:", 0, 1);
-foreach ($benefits as $benefit) {
-    $pdf->Cell(0, 10, "- " . $benefit, 0, 1);
-}
-if ($otherBenefit != "") {
+$pdf->Cell(0, 10, "Expected benefits: " . $selectedBenefits, 0, 1);
+
+if (str_contains($selectedBenefits, "Other") !== false) {
     $pdf->Cell(0, 10, "If other, please specify: " . $otherBenefit, 0, 1);
 }
 $pdf->Cell(0, 10, "I confirm the above statements: " . $confirmAgreement, 0, 1);

@@ -1,8 +1,8 @@
 <?php
 
 //debug
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $trainingCourseType = $_POST["trainingCourseType"];
   $physicalLimitations = $_POST["physicalLimitations"];
   $limitationsExplanation = $_POST["limitationsExplanation"];
-  $benefits = $_POST["benefits"];
+  $selectedBenefits = isset($_POST['benefits']) ? $_POST['benefits'] : [];
+  // $benefits = $_POST["benefits"];
   $otherBenefit = $_POST["otherBenefit"];
   $confirmAgreement = isset($_POST["confirmAgreement"]) ? "Yes" : "No";
   $date = $_POST["date"];
@@ -60,10 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>If yes, then explain briefly: $limitationsExplanation</p>";
   }
   echo "<p>Please indicate the benefits you would like to expect from this organization:</p>";
-  foreach ($benefits as $benefit) {
+
+  foreach ($selectedBenefits as $benefit) {
       echo "<p>- $benefit</p>";
   }
-  if($otherBenefit){
+  if($benefit == 'Other'){
     echo "<p>If other, please specify: $otherBenefit</p>";
   }
 
@@ -77,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   echo '<p><a href="registration.html">Return to Home</a></p>';
 
-  echo '<p><a href="download_submission.php?name=' . urlencode($name) . '&fathersName=' . urlencode($fathersName) . '&dob=' . urlencode($dob) . '&placeOfBirth=' . urlencode($placeOfBirth) . '&profession=' . urlencode($profession) . '&religion=' . urlencode($religion) . '&sex=' . urlencode($sex) . '&maritalStatus=' . urlencode($maritalStatus) . '&bloodGroup=' . urlencode($bloodGroup) . '&email=' . urlencode($email) . '&mobile=' . urlencode($mobile) . '&practiceExperience=' . urlencode($practiceExperience) . '&exerciseType=' . urlencode($exerciseType) . '&physicalTrainingCourses=' . urlencode($physicalTrainingCourses) . '&trainingCourseType=' . urlencode($trainingCourseType) . '&physicalLimitations=' . urlencode($physicalLimitations) . '&limitationsExplanation=' . urlencode($limitationsExplanation) . '&benefits=' . urlencode(implode(',', $benefits)) . '&otherBenefit=' . urlencode($otherBenefit) . '&confirmAgreement=' . urlencode($confirmAgreement) . '&date=' . urlencode($date) . '&confirmEnrollment=' . urlencode($confirmEnrollment) . '&enrollmentDate=' . urlencode($enrollmentDate) . '">Download Submission</a></p>';
+  echo '<p><a href="download_submission.php?name=' . urlencode($name) . '&fathersName=' . urlencode($fathersName) . '&dob=' . urlencode($dob) . '&placeOfBirth=' . urlencode($placeOfBirth) . '&profession=' . urlencode($profession) . '&religion=' . urlencode($religion) . '&sex=' . urlencode($sex) . '&maritalStatus=' . urlencode($maritalStatus) . '&bloodGroup=' . urlencode($bloodGroup) . '&email=' . urlencode($email) . '&mobile=' . urlencode($mobile) . '&practiceExperience=' . urlencode($practiceExperience) . '&exerciseType=' . urlencode($exerciseType) . '&physicalTrainingCourses=' . urlencode($physicalTrainingCourses) . '&trainingCourseType=' . urlencode($trainingCourseType) . '&physicalLimitations=' . urlencode($physicalLimitations) . '&limitationsExplanation=' . urlencode($limitationsExplanation) . '&benefits=' . urlencode(implode(',', $selectedBenefits)) . '&otherBenefit=' . urlencode($otherBenefit) . '&confirmAgreement=' . urlencode($confirmAgreement) . '&date=' . urlencode($date) . '&confirmEnrollment=' . urlencode($confirmEnrollment) . '&enrollmentDate=' . urlencode($enrollmentDate) . '">Download Submission</a></p>';
 
   // Insert the form data into the database
   $servername = "localhost";
@@ -92,6 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+
+  $benefits = implode(', ', $selectedBenefits);
 
   // Prepare and bind the insert statement
   $stmt = $conn->prepare("INSERT INTO students (name, fathersName, dob, placeOfBirth, profession, religion, sex, maritalStatus, bloodGroup, email, mobile, practiceExperience, exerciseType, physicalTrainingCourses, trainingCourseType, physicalLimitations, limitationsExplanation, benefits, otherBenefit, confirmAgreement, date, confirmEnrollment, enrollmentDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
