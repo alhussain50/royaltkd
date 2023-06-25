@@ -1,3 +1,5 @@
+-- Database Name: royaltkd;
+
 CREATE TABLE students (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
