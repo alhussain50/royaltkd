@@ -165,3 +165,7 @@ section {
   padding: 20px;
   margin-bottom: 30px;
 }
+
+#shadow-host-companion{
+  display: none;
+}
