@@ -1,4 +1,4 @@
-# Royal Taekwondo Dojang Student Registration Web Application
+# Royal Taekwondo Dojang Student Registration
 
 Welcome to the Royal Taekwondo Dojang Student Registration Web Application! This platform simplifies the student registration process for our esteemed martial arts academy. Below, you'll find information on the features and functionalities of our application.
 
