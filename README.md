@@ -47,6 +47,8 @@ Visit our [GitHub repository](https://github.com/alhussain50/royaltkd/) to explo
 
 ## Screenshots
 
-Include screenshots of the registration form, confirmation page, and any other relevant sections to provide users with a visual understanding of the application.
-
-**Thank you for choosing Royal Taekwondo Dojang!**
+![Registration Form](screenshots/Screenshot%20from%202023-12-21%2023-32-17.png)
+![Registration Form_2](screenshots/Screenshot%20from%202023-12-21%2023-34-16.png)
+<div align="center">
+  <img src="screenshots/Screenshot%20from%202023-12-21%2023-35-43.png" alt="Admin Confirmation">
+</div>
